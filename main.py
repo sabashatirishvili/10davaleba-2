@@ -46,4 +46,3 @@ def squareSum(n):
         return 1
     return n**2 + squareSum(n-1)
 
-print(squareSum(3))
