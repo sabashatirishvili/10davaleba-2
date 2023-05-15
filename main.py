@@ -1,19 +1,23 @@
 import math
 
+#1. ფაქტორიალის გამოთვლა
 def factorial(x):
     if x == 1 or x == 0:
         return 1
     return x * factorial(x-1)
 
+#2. სამ რიცხვში უმცირესის პოვნა
 def minimum(x, y, z):
     return min(x, y, z)
 
+#3. ტემპერატურს შკალის კონვერტორი ცელსიუსიდან ფარენგეიტში და პირიქით
 def toCelsius(temp):
     return (5/9) * (temp - 32)
 
 def toFahrenheit(temp):
     return (temp * (9/5)) + 32
 
+#4. მოცემულ დიაპაზონში (1..n) ყველა მარტივი რიცხვის პოვნა
 def isPrime(x):
     if x < 2:
         return False
@@ -27,11 +31,13 @@ def allPrime(n):
         if isPrime(i):
             print(i)
 
+#5. 1-დან n-მდე ყველა რიცხვის ჯამი
 def sumAll(n):
     if n == 1:
         return 1
     return n + sumAll(n - 1)
 
+#6. 1-დან n-მდე ყველა რიცხვის საშუალო არითმეტიკული
 def average(n):
     sum = 0
     count = 0
@@ -40,12 +46,14 @@ def average(n):
         count += 1
     return sum / count
 
+#7. 1-დან n-მდე ყველა რიცივის კვადრატების ჯამი
 def squareSum(n):
     sum = 0
     for i in range(1, n+1):
         sum += i**2
     return sum
 
+#8. 1-დან n-მდე ყველა ლუწი რიცხვის ჯამი
 def evenSum(n):
     sum = 0
     for i in range(1, n+1):
@@ -53,9 +61,11 @@ def evenSum(n):
             sum += i
     return sum
 
+#9. ორი რიცხვის უმცირესი საერთო ჯერადი
 def lcm(a, b):
     return abs(a * b) // math.gcd(a, b)
 
+#10. მოცემული რიცხვის ყველა გამყოფის პოვნა 
 def allDivisors(n):
     divisors = []
     for i in range(1, n+1):
@@ -63,6 +73,7 @@ def allDivisors(n):
             divisors.append(i)
     return divisors
 
+#11.
 def menuCreator(n, items):
     keys = list(i for i in range(1, n+1))
     if len(keys) != len(items):
@@ -75,7 +86,8 @@ def main():
         menu = menuCreator(11, [factorial, minimum, toCelsius, toFahrenheit, 
                             allPrime, sumAll, average,
                             squareSum, evenSum, lcm, allDivisors])
-    
+        print(" ")
+        print("აირჩიეთ ერთ-ერთი:")
         print("1. რიცხვის ფაქტორიალის გამოთვლა")
         print("2. სამ რიცხვს შორის უმცირესის გამოთვლა")
         print("3. ტემპერატურის ფარენგეიტიდან ცელსიუსში გადაყვანა")
