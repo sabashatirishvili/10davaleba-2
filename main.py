@@ -1,24 +1,29 @@
 import math
 
-#1. ფაქტორიალის გამოთვლა
+
 def factorial(x):
+    '''#1. ფაქტორიალის გამოთვლა'''
     if x == 1 or x == 0:
         return 1
     return x * factorial(x-1)
 
-#2. სამ რიცხვში უმცირესის პოვნა
+
 def minimum(x, y, z):
+    '''#2. სამ რიცხვში უმცირესის პოვნა'''
     return min(x, y, z)
 
-#3. ტემპერატურს შკალის კონვერტორი ცელსიუსიდან ფარენგეიტში და პირიქით
+
 def toCelsius(temp):
+    '''#3. F-C გადამყვანი'''
     return (5/9) * (temp - 32)
 
 def toFahrenheit(temp):
+    '''#3. C-F გადამყვანი'''
     return (temp * (9/5)) + 32
 
-#4. მოცემულ დიაპაზონში (1..n) ყველა მარტივი რიცხვის პოვნა
+
 def isPrime(x):
+    '''#4. მოცემულ დიაპაზონში (1..n) ყველა მარტივი რიცხვის პოვნა'''
     if x < 2:
         return False
     for i in range(2, int(x ** 0.5) + 1):
@@ -31,14 +36,16 @@ def allPrime(n):
         if isPrime(i):
             print(i)
 
-#5. 1-დან n-მდე ყველა რიცხვის ჯამი
+
 def sumAll(n):
+    '''#5. 1-დან n-მდე ყველა რიცხვის ჯამი'''
     if n == 1:
         return 1
     return n + sumAll(n - 1)
 
-#6. 1-დან n-მდე ყველა რიცხვის საშუალო არითმეტიკული
+
 def average(n):
+    '''#6. 1-დან n-მდე ყველა რიცხვის საშუალო არითმეტიკული'''
     sum = 0
     count = 0
     for i in range(1, n+1):
@@ -46,34 +53,38 @@ def average(n):
         count += 1
     return sum / count
 
-#7. 1-დან n-მდე ყველა რიცივის კვადრატების ჯამი
 def squareSum(n):
+    '''#7. 1-დან n-მდე ყველა რიცივის კვადრატების ჯამი'''
     sum = 0
     for i in range(1, n+1):
         sum += i**2
     return sum
 
-#8. 1-დან n-მდე ყველა ლუწი რიცხვის ჯამი
+
 def evenSum(n):
+    '''#8. 1-დან n-მდე ყველა ლუწი რიცხვის ჯამი'''
     sum = 0
     for i in range(1, n+1):
         if i % 2 == 0:
             sum += i
     return sum
 
-#9. ორი რიცხვის უმცირესი საერთო ჯერადი
+
 def lcm(a, b):
+    '''#9. ორი რიცხვის უმცირესი საერთო ჯერადი'''
     return abs(a * b) // math.gcd(a, b)
 
-#10. მოცემული რიცხვის ყველა გამყოფის პოვნა 
+
 def allDivisors(n):
+    '''#10. მოცემული რიცხვის ყველა გამყოფის პოვნა '''
     divisors = []
     for i in range(1, n+1):
         if n % i == 0:
             divisors.append(i)
     return divisors
 
-#11.
+
+
 def menuCreator(n, items):
     keys = list(i for i in range(1, n+1))
     if len(keys) != len(items):
