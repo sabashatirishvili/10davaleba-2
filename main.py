@@ -1,5 +1,5 @@
 import math
-
+import os
 
 def factorial(x):
     '''#1. ფაქტორიალის გამოთვლა'''
@@ -85,54 +85,65 @@ def allDivisors(n):
 
 
 
-def menuCreator(n, items):
-    keys = list(i for i in range(1, n+1))
-    if len(keys) != len(items):
-        return "მენიუ ვერ შეიქმნება"
-    menu = dict(zip(keys,items))
-    return menu
 
 def main():
-    while True:
-        menu = menuCreator(11, [factorial, minimum, toCelsius, toFahrenheit, 
-                            allPrime, sumAll, average,
-                            squareSum, evenSum, lcm, allDivisors])
-        print(" ")
-        print("აირჩიეთ ერთ-ერთი:")
-        print("1. რიცხვის ფაქტორიალის გამოთვლა")
-        print("2. სამ რიცხვს შორის უმცირესის გამოთვლა")
-        print("3. ტემპერატურის ფარენგეიტიდან ცელსიუსში გადაყვანა")
-        print("4. ტემპერატურის ცელსიუსიდან ფარენგეიტში გადაყვანა")
-        print("5. 1..n ყველა მარტივი რიცხვი")
-        print("6. 1..n ყველა რიცხვის ჯამი")
-        print("7. 1..n ყველა რიცხვის საშ. არითმეტიკული")
-        print("8. 1..n ყველა რიცხვის კვადრატის ჯამი")
-        print("9. 1..n ყველა ლუწი რიცხვის ჯამი")
-        print("10. ორი რიცხვის უმცირესი საერთო ჯერადი")
-        print("11. მოცემული რიცხვის ყველა გამყოფის პოვნა")
-        print("0. პროგრამის შეჩერება")
+    menu = [
+        ("ფაქტორიალის გამოთვლა", factorial),
+        ("სამ რიცხვში უმცირესის პოვნა", minimum),
+        ("ფარენგეიტიდან ცელსიუსზე გადაყვანა", toCelsius),
+        ("ცელსიუსიდან ფარენგეიტზე გადაყვანა", toFahrenheit),
+        ("1..n ყველა მარტივი რიცხვის პოვნა", allPrime),
+        ("1..n ყველა რიცხვის ჯამი", sumAll),
+        ("1..n ყველა რიცხვის საშ. არითმეტიკული", average),
+        ("1..n ყველა რიცხვის კვადრატების ჯამი", squareSum),
+        ("1..n ყველა ლუწი რიცხვის ჯამი", evenSum),
+        ("ორი რიცხვის უსჯ", lcm),
+        ("მოცემული რიცხვის ყველა გამყოფის პოვნა", allDivisors),
+        ]
+    
+    actions = {
+        "1": factorial,
+        "2": minimum,
+        "3": toCelsius,
+        "4": toFahrenheit,
+        "5": allPrime,
+        "6": sumAll,
+        "7": average,
+        "8": squareSum,
+        "9": evenSum,
+        "10": lcm,
+        "11": allDivisors,
+    }
 
+    while True:
+        os.system("cls" if os.name == "nt" else "clear")
+
+        print("მენიუ:")
+        for i,item in enumerate(menu):
+            print(f"{i + 1}.{item[0]}")
+        
+        choice = input("აირჩიე მოქმედება:")
+        action = actions[choice]
         result = 0
-        choice = int(input("აირჩიეთ ერთ-ერთი:"))
-        if choice == 0:
+
+        if action is None:
             break
         
-        selected_function = menu[choice]
-    
-        if choice == 10:
-            num1 = int(input("პირველი რიცხვი:"))
-            num2 = int(input("მეორე რიცხვი:"))
-            result = lcm(num1 , num2)
-        elif choice == 2:
-            num1 = int(input("პირველი რიცხვი: "))
-            num2 = int(input("მეორე რიცხვი: "))
-            num3 = int(input("მესამე რიცხვი: "))
-            result = minimum(num1, num2, num3)
+
+        if action == minimum:
+            a = float(input("შეიყვანე პირველი რიცხვი"))
+            b = float(input("შეიყვანე მეორე რიცხვი"))
+            c = float(input("შეიყვანე მესამე რიცხვი"))
+            result = action(a, b, c)
+        elif action == lcm:
+            a = float(input("შეიყვანე პირველი რიცხვი"))
+            b = float(input("შეიყვანე მეორე რიცხვი"))
+            result = action(a, b)
         else:
-            result = selected_function(int(input("შეიყვანეთ რიცხვი:")))
-    
+            a = float(input("შეიყვანე რიცხვი:"))
+            result = action(a)
+        
         print(f"შედეგი: {result}")
-    
 
 if __name__ == "__main__":
     main()
